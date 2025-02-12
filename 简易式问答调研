@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>恐怖测试</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>恐怖测试</h1>
+        <div id="question-container">
+            <!-- 单选题动态加载到这里 -->
+        </div>
+        <div id="result-container" class="hidden">
+            <p id="final-message"></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a1a;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+button {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #666;
+}
+
+#final-message {
+    font-size: 24px;
+    color: #ff4444;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+const questions = [
+    {
+        question: "你相信鬼魂的存在吗？",
+        options: ["相信", "不相信", "不确定"]
+    },
+    {
+        question: "你曾经经历过灵异事件吗？",
+        options: ["是的", "没有", "不确定"]
+    },
+    {
+        question: "你敢独自看恐怖片吗？",
+        options: ["敢", "不敢", "看情况"]
+    }
+];
+
+let currentQuestionIndex = 0;
+const questionContainer = document.getElementById('question-container');
+const resultContainer = document.getElementById('result-container');
+const finalMessage = document.getElementById('final-message');
+
+function showQuestion() {
+    if (currentQuestionIndex < questions.length) {
+        const question = questions[currentQuestionIndex];
+        let optionsHTML = question.options.map(option => 
+            `<button onclick="nextQuestion()">${option}</button>`
+        ).join('');
+        questionContainer.innerHTML = `
+            <p>${question.question}</p>
+            ${optionsHTML}
+        `;
+    } else {
+        showFinalMessage();
+    }
+}
+
+function nextQuestion() {
+    currentQuestionIndex++;
+    showQuestion();
+}
+
+function showFinalMessage() {
+    questionContainer.classList.add('hidden');
+    resultContainer.classList.remove('hidden');
+    finalMessage.textContent = "你逃不掉的...你逃不掉的...你逃不掉的...";
+}
+
+// 初始化
+showQuestion();
+<audio id="bg-music" loop>
+      <source src="horror-music.mp3" type="audio/mpeg">
+  </audio>
+  <script>
+      document.getElementById('bg-music').play();
+  </script>
+body {
+      background: linear-gradient(45deg, #000, #222);
+      animation: bg-animation 10s infinite;
+  }
+
+  @keyframes bg-animation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+  }
