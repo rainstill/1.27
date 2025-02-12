@@ -1,4 +1,3 @@
-# 1.27
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
